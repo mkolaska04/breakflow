@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2b5ed8;
+  --color-success: #0CCE6Bl
+  
+  --spacing-header: 4rem;
+  --spacing-sidebar: 16rem;
+  --spacing-container: 1.5rem;
+}

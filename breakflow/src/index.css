@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #2b5ed8;
+  --color-primary-dark: #1e40af;
+  --color-secondary: #8969d4;       /* Violet */
+  --color-secondary-dark: #aa6eee;  
+  --color-success: #10b981;
+  --color-success-dark: #05b67e;
+  --color-background: #ffffff;
+  --color-background-dark: #111827;
+  --color-surface: #F1F1F1;
+  --color-surface-dark: #1f2937;
+  --color-text: #1f2937;
+  --color-text-dark: #f9fafb;
+  --color-text-muted: #59606C;
+  --color-text-muted-dark: #9ca3af;
+
+  --spacing-header: 2rem;
+  --spacing-sidebar: 16rem;
+  --spacing-container: 1.5rem;
+
+  --bg-primary: var(--color-background);
+  --bg-primary: var(--color-background);
+  --bg-surface: var(--color-surface);
+  --text-primary: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --theme-primary: var(--color-primary);
+  --theme-secondary: var(--color-secondary);
+  --theme-success: var(--color-success);
+}
+
+.dark {
+  --bg-primary: var(--color-background-dark);
+  --bg-surface: var(--color-surface-dark);
+  --text-primary: var(--color-text-dark);
+  --text-muted: var(--color-text-muted-dark);
+  --theme-primary: var(--color-primary-dark);
+  --theme-secondary: var(--color-secondary-dark);
+  --theme-success: var(--color-success-dark);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
