@@ -52,7 +52,7 @@ export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
   };
 
   return (
-    <div className="p-4 bg-[var(--bg-surface)] rounded-lg shadow-md max-w-4xl mx-auto">
+    <div className="p-4 bg-[var(--bg-surface)] rounded-lg shadow-md max-w-4xl my-8 mx-4 md:mx-auto mb-4">
       <h2 className="text-2xl font-bold mb-4 text-[var(--theme-secondary)]">
         Fill to calculate your statistics
       </h2>
@@ -122,3 +122,5 @@ export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
     </div>
   );
 }
+
+

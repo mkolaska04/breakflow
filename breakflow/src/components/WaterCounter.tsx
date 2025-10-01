@@ -1,7 +1,7 @@
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import { useEffect, useState } from 'react';
 
-export default function WaterCounter({ optimalIntake }: { optimalIntake?: number }) {
+export default function WaterCounter({ optimalIntake, changed }: { optimalIntake?: number, changed: boolean }) {
     const [totalCups, setTotalCups] = useState(0);
     const [consumedCups, setConsumedCups] = useState(0);
     const [isGoalMet, setIsGoalMet] = useState(false);
@@ -39,8 +39,9 @@ export default function WaterCounter({ optimalIntake }: { optimalIntake?: number
     const consumedLiters = (consumedCups * 0.25).toFixed(2);
 
     return (
-        <div className="p-4 bg-[var(--bg-surface)] rounded-lg shadow-md">
+        <div className="p-4 bg-[var(--bg-surface)] rounded-lg shadow-md w-full ">
             <h2 className="text-2xl font-bold mb-4 text-[var(--theme-secondary)]">Water Intake</h2>
+            {!changed && <div className="text-red-500">To calculate your water intake, please fill in your body data!</div>}
 
             {optimalIntake !== undefined && (
                 <>
