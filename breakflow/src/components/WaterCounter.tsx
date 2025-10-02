@@ -1,10 +1,12 @@
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import { useEffect, useState } from 'react';
+import Modal from './Modal.tsx';
 
 export default function WaterCounter({ optimalIntake, changed }: { optimalIntake?: number, changed: boolean }) {
     const [totalCups, setTotalCups] = useState(0);
     const [consumedCups, setConsumedCups] = useState(0);
     const [isGoalMet, setIsGoalMet] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (optimalIntake !== undefined) {
@@ -16,17 +18,18 @@ export default function WaterCounter({ optimalIntake, changed }: { optimalIntake
     useEffect(() => {
         if (optimalIntake !== undefined) {
             const consumedLitersActual = consumedCups * 0.25;
-            setIsGoalMet(consumedLitersActual >= optimalIntake);
+            const goalAchieved = consumedLitersActual >= optimalIntake;
+            
+            // Only open the modal if the goal is met and it wasn't met before
+            if (goalAchieved && !isGoalMet) {
+                setIsModalOpen(true);
+            }
+            setIsGoalMet(goalAchieved);
         } else {
             setIsGoalMet(false);
+            setIsModalOpen(false); // Close modal if intake is undefined
         }
-    }, [consumedCups, optimalIntake]); 
-
-    useEffect(() => {
-        if (isGoalMet) {
-            alert("Congratulations! You've met your water intake goal.");
-        }
-    }, [isGoalMet]);
+    }, [consumedCups, optimalIntake, isGoalMet]); // Add isGoalMet to dependency array to detect changes
 
     const handleCupClick = (cupIndex: number) => {
         if (cupIndex + 1 <= consumedCups) {
@@ -72,9 +75,18 @@ export default function WaterCounter({ optimalIntake, changed }: { optimalIntake
                     </div>
                 </>
             )}
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Congratulations!">
+                <div className="p-4">
+                    
+                    <p className='text-xl'>You've met your water intake goal for today.</p>
+                    <ul className="mt-2 list-disc list-inside text-lg ">
+                        <li className="mt-2">Staying hydrated helps maintain energy levels.</li>
+                        <li className="mt-2">Proper hydration supports healthy skin and organs.</li>
+                        <li className="mt-2">Keep up the good work for your overall well-being!</li>
+                    </ul>
+                  
+                </div>
+            </Modal>
         </div>
     );
 }
-
-
-// add modal base component with place to add content to give user an info when reaches the goal and to show information about health benefits of drinking or daylife activity

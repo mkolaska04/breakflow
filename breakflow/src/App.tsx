@@ -8,8 +8,31 @@ import ActivityReminder from './components/ActivityReminder.tsx'
 
 function App() {
     const { isDarkMode, toggleTheme } = useTheme();
-  const [bodyData, setBodyData] = useState({});
+  type BodyData = {
+    height: number;
+    weight: number;
+    age: number;
+    changed: boolean;
+  };
+
+  const [bodyData, setBodyData] = useState<BodyData>({
+    height: 0,
+    weight: 0,
+    age: 0,
+    changed: false,
+  });
   const [optimalIntake, setOptimalIntake] = useState<number | null>(null);
+  const [bmi, setBmi] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (bodyData && bodyData.height && bodyData.weight && !isNaN(Number(bodyData.height)) && !isNaN(Number(bodyData.weight))) {
+      const heightInMeters = Number(bodyData.height) / 100;
+      const calculatedBmi = Number(bodyData.weight) / (heightInMeters * heightInMeters);
+      setBmi(parseFloat(calculatedBmi.toFixed(2)));
+    } else {
+      setBmi(null);
+    }
+  }, [bodyData]);
 
   useEffect(() => {
     const savedData = localStorage.getItem('bodyData'); 
@@ -21,7 +44,7 @@ function App() {
         console.error("Failed to parse bodyData from localStorage", error);
       }
     } else {
-      setBodyData({ gender: '', height: 0, weight: 0, age: 0, changed: false });
+      setBodyData({  height: 0, weight: 0, age: 0, changed: false });
     }
   }, []);
 
@@ -51,7 +74,7 @@ function App() {
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] p-4">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:space-x-4 space-y-8 md:space-y-0">
           <section className="w-full">
-            <ActivityReminder />
+            <ActivityReminder bmi={bmi === null ? undefined : bmi} />
           </section>
           <section className="w-full">
             <WaterCounter optimalIntake={optimalIntake === null ? undefined : optimalIntake} changed={bodyData.changed} />

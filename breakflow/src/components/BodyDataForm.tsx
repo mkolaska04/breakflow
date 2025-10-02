@@ -6,7 +6,6 @@ type BodyDataFormProps = {
 
 export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
   const [formData, setFormData] = useState({
-    gender: '',
     height: '',
     weight: '',
     age: '',
@@ -18,9 +17,6 @@ export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formData.gender) {
-      newErrors.gender = 'Please select a gender';
-    }
     if (!formData.height || Number(formData.height) <= 0 || Number(formData.height) > 300) {
       newErrors.height = 'Please enter a valid height';
     }
@@ -56,19 +52,7 @@ export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
       <h2 className="text-2xl font-bold mb-4 text-[var(--theme-secondary)]">
         Fill to calculate your statistics
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col md:flex-row md:space-x-4 md:space-y-0">
-        <div>
-          <label className="block text-sm font-medium text-[var(--text-primary)]">Gender</label>
-          <div className="flex items-center">
-            <input type="radio" id="male" name="gender" value="male" onChange={handleChange} className="mr-2" />
-            <label htmlFor="male" className="ml-2">Male</label>
-          </div>
-          <div className="flex items-center">
-            <input type="radio" id="female" name="gender" value="female" onChange={handleChange} className="mr-2" />
-            <label htmlFor="female" className="ml-2">Female</label>
-          </div>
-          {errors.gender && <div className="text-red-500 text-sm mt-1">{errors.gender}</div>}
-        </div>
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col md:flex-row md:space-x-8 md:space-y-0">
 
         <div>
           <label htmlFor="height" className="block text-sm font-medium text-[var(--text-primary)]">Height (cm)</label>
@@ -114,11 +98,12 @@ export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {
 
         <button
           type="submit"
-          className="h-10 px-4 py-2 bg-[var(--theme-primary)] text-white rounded-md shadow-sm hover:bg-[var(--theme-primary-dark)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 self-start"
+          className="h-10 px-4 py-2 bg-[var(--theme-primary)] text-white rounded-md shadow-sm hover:bg-[var(--theme-primary-dark)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 self-center"
         >
           Submit
         </button>
       </form>
+      
     </div>
   );
 }
