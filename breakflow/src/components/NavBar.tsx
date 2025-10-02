@@ -1,7 +1,6 @@
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
-// Define the props for each component for better type safety and clarity
 interface NavBarProps {
   onToggleAction: () => void;
   isDarkMode: boolean;

@@ -5,6 +5,7 @@ import BodyDataForm from './components/BodyDataForm.tsx'
 import WaterCounter from './components/WaterCounter.tsx'
 import { useState, useEffect } from 'react'
 import ActivityReminder from './components/ActivityReminder.tsx'
+import Footer from './components/Footer.tsx'
 
 function App() {
     const { isDarkMode, toggleTheme } = useTheme();
@@ -48,11 +49,16 @@ function App() {
     }
   }, []);
 
-  const handleFormSubmit = (data: any) => {
-    const newData = { ...data, changed: true };
+  const handleFormSubmit = (data: { height: string; weight: string; age: string }) => {
+    const newData = {
+      height: parseFloat(data.height),
+      weight: parseFloat(data.weight),
+      age: parseInt(data.age, 10),
+      changed: true,
+    };
     setBodyData(newData);
-    localStorage.setItem('bodyData', JSON.stringify(data)); 
-    console.log("Received valid data and saved to localStorage:", data);
+    localStorage.setItem('bodyData', JSON.stringify(newData));
+    console.log("Received valid data and saved to localStorage:", newData);
   };
 
   useEffect(() => {
@@ -81,6 +87,7 @@ function App() {
           </section>
         </div>
       </main>
+      <Footer />
       
     </>
   )

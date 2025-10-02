@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 type BodyDataFormProps = {
-  onFormSubmit: (data: any) => void;
+  onFormSubmit: (data: { height: string; weight: string; age: string }) => void;
 };
 
 export default function BodyDataForm({ onFormSubmit }: BodyDataFormProps) {

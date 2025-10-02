@@ -20,16 +20,15 @@ export default function WaterCounter({ optimalIntake, changed }: { optimalIntake
             const consumedLitersActual = consumedCups * 0.25;
             const goalAchieved = consumedLitersActual >= optimalIntake;
             
-            // Only open the modal if the goal is met and it wasn't met before
             if (goalAchieved && !isGoalMet) {
                 setIsModalOpen(true);
             }
             setIsGoalMet(goalAchieved);
         } else {
             setIsGoalMet(false);
-            setIsModalOpen(false); // Close modal if intake is undefined
+            setIsModalOpen(false);
         }
-    }, [consumedCups, optimalIntake, isGoalMet]); // Add isGoalMet to dependency array to detect changes
+    }, [consumedCups, optimalIntake, isGoalMet]); 
 
     const handleCupClick = (cupIndex: number) => {
         if (cupIndex + 1 <= consumedCups) {

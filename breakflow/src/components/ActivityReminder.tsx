@@ -130,7 +130,7 @@ export default function ActivityReminder({ bmi }: { bmi?: number }) {
   return (
     <div className="p-6 bg-[var(--bg-surface)] rounded-lg shadow-xl flex flex-col w-full max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-[var(--theme-secondary)] ">Activity Reminder</h2>
-      <p className=" text-[var(--text-secondary)]">Optimal values for your BMI ({bmi?.toFixed(1)}) :</p> {/* Added .toFixed(1) for BMI display */}
+      <p className=" text-[var(--text-secondary)]">Optimal values for your BMI ({bmi?.toFixed(1)}) :</p> 
 
       {!isSessionActive && (
         <div className="w-full rounded-lg my-4">
