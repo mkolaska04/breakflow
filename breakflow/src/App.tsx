@@ -71,13 +71,13 @@ function App() {
     }
   }, [bodyData]);
   return (
-    < div className="min-h-screen ">
+    < div className="min-h-screen flex flex-col ">
       <header>
         <NavBar onToggleAction={toggleTheme} isDarkMode={isDarkMode} />
                   <BodyDataForm onFormSubmit={handleFormSubmit} />
 
       </header>
-      <main className=" bg-[var(--bg-primary)] text-[var(--text-primary)] p-4">
+      <main className=" flex-1 bg-[var(--bg-primary)] text-[var(--text-primary)] p-4">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row md:space-x-4 space-y-8 md:space-y-0">
           <section className="w-full">
             <ActivityReminder bmi={bmi === null ? undefined : bmi} />
